@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heterotrophic Nutrition & Digestion in Man</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf9f6;
+  --white: #ffffff;
+  --ink: #1a1208;
+  --rust: #c4501a;
+  --amber: #e8922a;
+  --gold: #d4a843;
+  --sage: #6b8f71;
+  --blush: #f0e0d0;
+  --cream: #f5f0e8;
+  --border: #e0d8cc;
+  --muted: #7a6e62;
+  --enzyme: #7b4fa0;
+  --water: #3a7bbf;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ─── PROGRESS BAR ─── */
+#progress-bar {
+  position: fixed; top: 0; left: 0; z-index: 200;
+  height: 3px; background: var(--rust);
+  width: 0%; transition: width 0.1s;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(250,249,246,0.96);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.9rem 3rem;
+  backdrop-filter: blur(12px);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--rust);
+}
+.nav-links {
+  display: flex; gap: 0.3rem;
+}
+.nav-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid transparent;
+  color: var(--muted); cursor: pointer;
+  transition: all 0.25s; border-radius: 2px;
+  background: none;
+}
+.nav-link:hover, .nav-link.active {
+  border-color: var(--rust); color: var(--rust);
+  background: var(--blush);
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 7rem 3rem 4rem;
+  gap: 4rem;
+  border-bottom: 1px solid var(--border);
+  max-width: 1200px; margin: 0 auto;
+}
+.hero-text {}
+.hero-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--rust); margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: 0.7rem;
+}
+.hero-kicker::before { content:''; display:block; width:32px; height:1px; background:var(--rust); }
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 700; line-height: 1.05;
+  margin-bottom: 1.5rem;
+  color: var(--ink);
+}
+.hero-title em { font-style: italic; color: var(--rust); }
+.hero-lead {
+  font-size: 1.1rem; line-height: 1.75;
+  color: var(--muted); max-width: 480px;
+  margin-bottom: 2rem;
+}
+.hero-stats {
+  display: flex; gap: 2rem;
+  border-top: 1px solid var(--border); padding-top: 1.5rem;
+}
+.stat-item { }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 700;
+  color: var(--rust); line-height: 1;
+}
+.stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.2rem;
+}
+
+/* Animated digestive tract hero SVG */
+.hero-visual {
+  display: flex; justify-content: center; align-items: center;
+  position: relative;
+}
+
+/* ─── SECTION LAYOUT ─── */
+.section-wrap {
+  max-width: 1200px; margin: 0 auto;
+  padding: 5rem 3rem;
+  border-bottom: 1px solid var(--border);
+}
+.section-header {
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 2rem; align-items: start;
+  margin-bottom: 3.5rem;
+}
+.section-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem; font-weight: 700;
+  color: var(--blush); line-height: 1;
+  user-select: none;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700; line-height: 1.1;
+  color: var(--ink);
+}
+.section-title em { font-style: italic; color: var(--rust); }
+.section-sub {
+  font-size: 1rem; color: var(--muted);
+  margin-top: 0.6rem; line-height: 1.65;
+}
+
+/* ─── NUTRITION TYPES CARDS ─── */
+.nutrition-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+.nutrition-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px; padding: 2rem;
+  cursor: pointer; transition: all 0.3s;
+  position: relative; overflow: hidden;
+}
+.nutrition-card::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; right: 0; height: 3px;
+  background: var(--rust); transform: scaleX(0);
+  transition: transform 0.3s; transform-origin: left;
+}
+.nutrition-card:hover::after, .nutrition-card.active::after { transform: scaleX(1); }
+.nutrition-card:hover, .nutrition-card.active {
+  box-shadow: 0 8px 40px rgba(196,80,26,0.1);
+  transform: translateY(-3px);
+}
+.nc-icon { font-size: 2.2rem; margin-bottom: 1rem; display:block; }
+.nc-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--rust); margin-bottom: 0.4rem;
+}
+.nc-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 700; margin-bottom: 0.7rem;
+}
+.nc-body { font-size: 0.92rem; line-height: 1.65; color: var(--muted); }
+.nc-examples {
+  margin-top: 1rem; padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem; color: var(--rust); letter-spacing: 0.1em;
+}
+
+/* ─── FIVE PROCESSES ─── */
+.processes-row {
+  display: flex; gap: 0; overflow: hidden;
+  border: 1px solid var(--border); border-radius: 4px;
+}
+.process-step {
+  flex: 1; padding: 2rem 1.5rem;
+  border-right: 1px solid var(--border);
+  cursor: pointer; transition: all 0.3s;
+  position: relative;
+}
+.process-step:last-child { border-right: none; }
+.process-step:hover, .process-step.active {
+  background: var(--blush);
+}
+.ps-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem; color: var(--rust); letter-spacing: 0.2em;
+  margin-bottom: 0.5rem;
+}
+.ps-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.ps-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
+.ps-detail {
+  font-size: 0.85rem; color: var(--muted); line-height: 1.6;
+  max-height: 0; overflow: hidden; transition: max-height 0.5s ease;
+}
+.process-step.active .ps-detail { max-height: 300px; }
+
+/* ─── ORGAN MAP ─── */
+.organ-layout {
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start;
+}
+.organ-list { }
+.organ-btn {
+  display: flex; align-items: center; gap: 1rem;
+  width: 100%; text-align: left;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--border);
+  background: var(--white);
+  border-radius: 3px; margin-bottom: 0.5rem;
+  cursor: pointer; transition: all 0.25s;
+  font-family: 'Source Serif 4', serif;
+}
+.organ-btn:hover, .organ-btn.active {
+  background: var(--blush);
+  border-color: var(--rust);
+  transform: translateX(6px);
+}
+.ob-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  flex-shrink: 0;
+}
+.ob-name {
+  font-weight: 400; font-size: 1rem;
+  color: var(--ink);
+}
+.ob-role {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted);
+  margin-left: auto; flex-shrink: 0;
+}
+
+.organ-detail-panel {
+  background: var(--white);
+  border: 1px solid var(--border); border-radius: 4px;
+  overflow: hidden; position: sticky; top: 80px;
+}
+.odp-header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--cream);
+}
+.odp-organ-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem; font-weight: 700;
+}
+.odp-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 0.25rem 0.7rem; border-radius: 2px;
+  display: inline-block; margin-top: 0.3rem;
+  background: var(--rust); color: white;
+}
+.odp-body { padding: 2rem; }
+.odp-svg { width: 100%; margin-bottom: 1.5rem; }
+.odp-desc { font-size: 0.97rem; line-height: 1.75; color: var(--muted); margin-bottom: 1rem; }
+.odp-facts { }
+.fact-row {
+  display: flex; gap: 1rem; padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+.fact-key {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--rust); width: 120px; flex-shrink: 0;
+  padding-top: 0.15rem;
+}
+.fact-val { color: var(--muted); }
+
+/* ─── ENZYME TABLE ─── */
+.enzyme-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.enzyme-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 0.8rem 1rem; text-align: left;
+  border-bottom: 2px solid var(--rust);
+  color: var(--rust); background: var(--cream);
+}
+.enzyme-table td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top; line-height: 1.5;
+}
+.enzyme-table tr:hover td { background: var(--blush); }
+.enzyme-name {
+  font-family: 'Playfair Display', serif;
+  font-style: italic; font-size: 1rem;
+  color: var(--enzyme);
+}
+.substrate-pill {
+  display: inline-block;
+  padding: 0.15rem 0.6rem; border-radius: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.1em;
+  background: var(--blush); color: var(--rust);
+  margin-right: 0.3rem; margin-top: 0.2rem;
+}
+.product-pill {
+  display: inline-block;
+  padding: 0.15rem 0.6rem; border-radius: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.1em;
+  background: #e8f0ff; color: #3a5bbf;
+  margin-right: 0.3rem; margin-top: 0.2rem;
+}
+
+/* ─── FOOD JOURNEY SIMULATOR ─── */
+.simulator-wrap {
+  background: var(--white); border: 1px solid var(--border); border-radius: 6px;
+  overflow: hidden;
+}
+.sim-header {
+  padding: 1.5rem 2rem; background: var(--ink);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.sim-title {
+  font-family: 'Playfair Display', serif;
+  color: white; font-size: 1.2rem;
+}
+.sim-controls { display: flex; gap: 0.7rem; }
+.sim-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 0.5rem 1.2rem;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: transparent; color: white;
+  cursor: pointer; transition: all 0.25s; border-radius: 2px;
+}
+.sim-btn:hover, .sim-btn.active { background: var(--rust); border-color: var(--rust); }
+.sim-btn.primary { background: var(--rust); border-color: var(--rust); }
+
+.sim-body {
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 0;
+}
+.sim-track {
+  border-right: 1px solid var(--border);
+  padding: 2rem;
+  display: flex; flex-direction: column; gap: 0;
+}
+.track-stage {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 0.8rem 1rem; border-radius: 3px;
+  cursor: pointer; transition: all 0.25s;
+  position: relative;
+}
+.track-stage::before {
+  content:''; position:absolute; left:22px; top:32px; bottom:-8px;
+  width:1px; background:var(--border);
+}
+.track-stage:last-child::before { display:none; }
+.track-stage.active { background: var(--blush); }
+.track-stage.passed .ts-dot { background: var(--rust); }
+.ts-dot {
+  width:14px; height:14px; border-radius:50%;
+  border:2px solid var(--rust); background:white;
+  flex-shrink:0; margin-top:3px; transition: all 0.3s;
+}
+.track-stage.active .ts-dot { background:var(--rust); transform:scale(1.3); box-shadow:0 0 0 4px rgba(196,80,26,0.15); }
+.ts-label { font-family:'Playfair Display',serif; font-size:0.95rem; font-weight:700; }
+.ts-organ {
+  font-family:'JetBrains Mono',monospace; font-size:0.58rem;
+  letter-spacing:0.15em; text-transform:uppercase; color:var(--muted);
+}
+.ts-time {
+  margin-left:auto; flex-shrink:0;
+  font-family:'JetBrains Mono',monospace; font-size:0.58rem;
+  color:var(--rust); letter-spacing:0.1em;
+}
+
+.sim-display { padding: 2rem; }
+.sim-stage-title {
+  font-family:'Playfair Display',serif;
+  font-size:1.6rem; font-weight:700; margin-bottom:0.3rem;
+}
+.sim-stage-organ {
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.62rem; letter-spacing:0.25em; text-transform:uppercase;
+  color:var(--rust); margin-bottom:1.5rem;
+}
+.sim-animation { width:100%; height:200px; margin-bottom:1.5rem; border-radius:4px; overflow:hidden; }
+.sim-desc { font-size:0.95rem; line-height:1.7; color:var(--muted); }
+.sim-enzymes {
+  margin-top:1rem; display:flex; flex-wrap:wrap; gap:0.4rem;
+}
+.enzyme-tag {
+  font-family:'JetBrains Mono',monospace; font-size:0.6rem;
+  letter-spacing:0.1em; padding:0.2rem 0.7rem;
+  border-radius:20px; background:#f3ebff; color:var(--enzyme);
+  border:1px solid #d8c8ef;
+}
+.ph-tag {
+  font-family:'JetBrains Mono',monospace; font-size:0.6rem;
+  letter-spacing:0.1em; padding:0.2rem 0.7rem;
+  border-radius:20px;
+}
+
+/* ─── ABSORPTION SECTION ─── */
+.absorption-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
+.villus-container { display:flex; justify-content:center; }
+.nutrient-cards { display:flex; flex-direction:column; gap:1rem; }
+.nutrient-card {
+  background:var(--white); border:1px solid var(--border);
+  border-radius:3px; padding:1.2rem 1.5rem;
+  display:flex; gap:1rem; align-items:center;
+  transition:all 0.25s; cursor:default;
+}
+.nutrient-card:hover { box-shadow:0 4px 20px rgba(196,80,26,0.1); transform:translateX(4px); }
+.nc-color { width:4px; border-radius:4px; align-self:stretch; flex-shrink:0; }
+.nc-info {}
+.nc-nutrient-name { font-family:'Playfair Display',serif; font-size:1rem; font-weight:700; }
+.nc-where { font-family:'JetBrains Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); }
+.nc-how { font-size:0.85rem; color:var(--muted); margin-top:0.2rem; }
+
+/* ─── QUIZ ─── */
+.quiz-wrap { }
+.quiz-q {
+  font-family:'Playfair Display',serif;
+  font-size:1.3rem; font-weight:700; margin-bottom:1.5rem; line-height:1.3;
+}
+.quiz-options { display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-bottom:1.5rem; }
+.quiz-opt {
+  padding:1rem 1.2rem; border:1px solid var(--border);
+  border-radius:3px; cursor:pointer; font-size:0.95rem;
+  transition:all 0.2s; background:var(--white); text-align:left;
+  font-family:'Source Serif 4',serif;
+}
+.quiz-opt:hover { background:var(--blush); border-color:var(--rust); }
+.quiz-opt.correct { background:#e6f4ea; border-color:#2e7d32; color:#1b5e20; }
+.quiz-opt.wrong { background:#fde8e8; border-color:#c62828; color:#b71c1c; }
+.quiz-feedback {
+  padding:1rem 1.5rem;
+  border-radius:3px; font-size:0.95rem; line-height:1.6;
+  display:none;
+}
+.quiz-feedback.show { display:block; }
+.quiz-feedback.correct-fb { background:#e6f4ea; border:1px solid #81c784; color:#1b5e20; }
+.quiz-feedback.wrong-fb { background:#fde8e8; border:1px solid #ef9a9a; color:#b71c1c; }
+.quiz-nav { display:flex; gap:1rem; margin-top:1.5rem; }
+.qnav-btn {
+  font-family:'JetBrains Mono',monospace; font-size:0.62rem;
+  letter-spacing:0.15em; text-transform:uppercase;
+  padding:0.7rem 1.5rem; border:1px solid var(--rust);
+  background:transparent; color:var(--rust); cursor:pointer;
+  transition:all 0.25s; border-radius:2px;
+}
+.qnav-btn:hover, .qnav-btn.primary { background:var(--rust); color:white; }
+.quiz-score {
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem; padding:0.5rem; color:var(--muted);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  padding:3rem 3rem;
+  text-align:center;
+  border-top:1px solid var(--border);
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes slide-in {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes peristalsis {
+  0%,100% { rx:30; }
+  50% { rx:20; }
+}
+@keyframes churn { 0%,100%{transform:rotate(0deg)} 50%{transform:rotate(3deg)} }
+@keyframes flow { 0%{stroke-dashoffset:200} 100%{stroke-dashoffset:0} }
+@keyframes absorb { 0%,100%{opacity:0.3;transform:scale(1)} 50%{opacity:1;transform:scale(1.3)} }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+
+.fade-in { animation: slide-in 0.5s ease both; }
+
+@media(max-width:900px) {
+  .hero { grid-template-columns:1fr; }
+  .nutrition-grid { grid-template-columns:1fr; }
+  .organ-layout { grid-template-columns:1fr; }
+  .sim-body { grid-template-columns:1fr; }
+  .absorption-grid { grid-template-columns:1fr; }
+  .quiz-options { grid-template-columns:1fr; }
+  .processes-row { flex-direction:column; }
+  .process-step { border-right:none; border-bottom:1px solid var(--border); }
+  nav { padding:0.9rem 1.2rem; }
+  .nav-links { display:none; }
+  .section-wrap { padding:3rem 1.2rem; }
+}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+
+<nav>
+  <div class="nav-logo">Digestion in Man</div>
+  <div class="nav-links">
+    <button class="nav-link active" onclick="scrollTo('section-types')">Nutrition Types</button>
+    <button class="nav-link" onclick="scrollTo('section-processes')">5 Processes</button>
+    <button class="nav-link" onclick="scrollTo('section-organs')">Organs</button>
+    <button class="nav-link" onclick="scrollTo('section-enzymes')">Enzymes</button>
+    <button class="nav-link" onclick="scrollTo('section-sim')">Simulator</button>
+    <button class="nav-link" onclick="scrollTo('section-absorption')">Absorption</button>
+    <button class="nav-link" onclick="scrollTo('section-quiz')">Quiz</button>
+  </div>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════════════════════ -->
+<div style="max-width:1200px;margin:0 auto;">
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-kicker">Biology · Human Physiology</p>
+    <h1 class="hero-title">Heterotrophic<br>Nutrition &<br><em>Digestion</em></h1>
+    <p class="hero-lead">
+      Heterotrophs cannot make their own food. Humans are holozoic heterotrophs — we ingest complex organic molecules, break them down through a 9-metre journey of mechanical and chemical digestion, and absorb the building blocks our cells need.
+    </p>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">9m</div><div class="stat-label">Gut Length</div></div>
+      <div class="stat-item"><div class="stat-num">24h</div><div class="stat-label">Transit Time</div></div>
+      <div class="stat-item"><div class="stat-num">20+</div><div class="stat-label">Enzymes</div></div>
+      <div class="stat-item"><div class="stat-num">200m²</div><div class="stat-label">Absorption Area</div></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <!-- Animated body SVG -->
+    <svg viewBox="0 0 260 400" width="300" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#fde8d0"/>
+          <stop offset="100%" stop-color="#f5d5bb"/>
+        </linearGradient>
+        <linearGradient id="tractGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#c4501a"/>
+          <stop offset="100%" stop-color="#7b2d0a"/>
+        </linearGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <!-- Body outline -->
+      <ellipse cx="130" cy="85" rx="50" ry="60" fill="url(#bodyGrad)" stroke="#e0c0a0" stroke-width="1.5" opacity="0.7"/>
+      <path d="M80,150 Q70,200 75,300 Q78,350 130,355 Q182,350 185,300 Q190,200 180,150 Z" fill="url(#bodyGrad)" stroke="#e0c0a0" stroke-width="1.5" opacity="0.7"/>
+      <!-- Head -->
+      <ellipse cx="130" cy="38" rx="30" ry="35" fill="url(#bodyGrad)" stroke="#e0c0a0" stroke-width="1.5" opacity="0.9"/>
+      <!-- Mouth marker -->
+      <circle cx="130" cy="65" r="5" fill="var(--rust)" opacity="0.9"/>
+
+      <!-- Oesophagus -->
+      <path d="M130,70 L130,145" stroke="var(--rust)" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
+
+      <!-- Stomach -->
+      <ellipse cx="115" cy="165" rx="30" ry="22" fill="none" stroke="var(--rust)" stroke-width="4" stroke-linecap="round" opacity="0.85">
+        <animateTransform attributeName="transform" type="rotate" values="-3 115 165;3 115 165;-3 115 165" dur="2s" repeatCount="indefinite"/>
+      </ellipse>
+
+      <!-- Small intestine (coiled) -->
+      <path d="M115,188 Q145,195 145,210 Q145,225 115,225 Q85,225 88,245 Q90,265 120,265 Q150,265 148,285 Q146,300 120,300" stroke="var(--amber)" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.85"/>
+
+      <!-- Large intestine (frame) -->
+      <path d="M120,300 Q80,300 80,260 Q80,200 85,185" stroke="var(--sage)" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <path d="M145,188 Q170,195 170,240 Q170,290 155,310 Q140,325 120,325 Q105,325 105,335" stroke="var(--sage)" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+
+      <!-- Rectum -->
+      <path d="M105,335 Q105,355 130,358" stroke="#7a4a3a" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+
+      <!-- Animated food particle -->
+      <circle r="6" fill="var(--gold)" opacity="0.9" filter="url(#glow)">
+        <animateMotion dur="5s" repeatCount="indefinite" rotate="auto">
+          <mpath href="#food-path"/>
+        </animateMotion>
+        <animate attributeName="r" values="6;4;6;3;5;4;6" dur="5s" repeatCount="indefinite"/>
+      </circle>
+      <path id="food-path" d="M130,70 L130,145 Q115,155 115,165 Q115,180 115,188 Q145,195 145,210 Q145,225 115,225 Q88,225 88,245 Q90,265 120,265 Q150,265 148,285 Q146,300 120,300 Q80,300 80,260 Q80,200 85,185" fill="none"/>
+
+      <!-- Labels -->
+      <text x="168" y="73" font-family="JetBrains Mono,monospace" font-size="8.5" fill="var(--rust)" letter-spacing="0.5">Mouth</text>
+      <line x1="136" y1="68" x2="165" y2="70" stroke="var(--rust)" stroke-width="0.8" stroke-dasharray="2,2"/>
+
+      <text x="172" y="135" font-family="JetBrains Mono,monospace" font-size="8" fill="var(--muted)" letter-spacing="0.5">Oesophagus</text>
+      <line x1="132" y1="120" x2="170" y2="132" stroke="var(--muted)" stroke-width="0.8" stroke-dasharray="2,2"/>
+
+      <text x="148" y="163" font-family="JetBrains Mono,monospace" font-size="8.5" fill="var(--rust)" letter-spacing="0.5">Stomach</text>
+
+      <text x="155" y="225" font-family="JetBrains Mono,monospace" font-size="7.5" fill="var(--amber)" letter-spacing="0.5">Small</text>
+      <text x="155" y="235" font-family="JetBrains Mono,monospace" font-size="7.5" fill="var(--amber)" letter-spacing="0.5">Intestine</text>
+
+      <text x="28" y="255" font-family="JetBrains Mono,monospace" font-size="7.5" fill="var(--sage)" letter-spacing="0.5">Large</text>
+      <text x="22" y="265" font-family="JetBrains Mono,monospace" font-size="7.5" fill="var(--sage)" letter-spacing="0.5">Intestine</text>
+    </svg>
+  </div>
+</section>
+</div>
+
+<!-- ══ 1. TYPES OF HETEROTROPHIC NUTRITION ════════════════ -->
+<div id="section-types">
+<div class="section-wrap">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div>
+      <h2 class="section-title">Types of <em>Heterotrophic</em> Nutrition</h2>
+      <p class="section-sub">Heterotrophs obtain organic nutrients from other organisms. Three main strategies exist in nature — humans practise holozoic nutrition.</p>
+    </div>
+  </div>
+  <div class="nutrition-grid">
+    <div class="nutrition-card active" onclick="this.classList.toggle('active')">
+      <span class="nc-icon">🍽️</span>
+      <div class="nc-tag">Type 01</div>
+      <div class="nc-title">Holozoic</div>
+      <div class="nc-body">Whole food is ingested, digested internally, absorbed, and indigestible remains egested. This is the mode of nutrition in all animals. Food undergoes both mechanical and chemical digestion inside a specialised gut.</div>
+      <div class="nc-examples">Examples: Humans · Mammals · Birds · Reptiles · Fish · Amoeba</div>
+    </div>
+    <div class="nutrition-card" onclick="this.classList.toggle('active')">
+      <span class="nc-icon">🍄</span>
+      <div class="nc-tag">Type 02</div>
+      <div class="nc-title">Saprophytic (Saprotrophic)</div>
+      <div class="nc-body">Organisms secrete digestive enzymes onto dead or decaying organic matter outside the body (extracellular digestion), then absorb the soluble products. These organisms are the planet's primary decomposers, cycling nutrients back into soil.</div>
+      <div class="nc-examples">Examples: Mushrooms · Moulds · Most bacteria · Yeast</div>
+    </div>
+    <div class="nutrition-card" onclick="this.classList.toggle('active')">
+      <span class="nc-icon">🦠</span>
+      <div class="nc-tag">Type 03</div>
+      <div class="nc-title">Parasitic</div>
+      <div class="nc-body">The organism (parasite) lives on or inside a host and feeds at the host's expense, often causing harm. Many parasites have simplified digestive systems or none at all — they absorb pre-digested nutrients directly from host tissues.</div>
+      <div class="nc-examples">Examples: Tapeworm · Liver fluke · Plasmodium · Mistletoe · Ticks</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ 2. FIVE PROCESSES ════════════════════════════════════ -->
+<div id="section-processes">
+<div class="section-wrap" style="background:var(--cream);">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div>
+      <h2 class="section-title">The Five Processes of<br><em>Holozoic Nutrition</em></h2>
+      <p class="section-sub">Click each stage to expand. These five steps transform a meal into cellular energy.</p>
+    </div>
+  </div>
+  <div class="processes-row">
+    <div class="process-step active" onclick="toggleProcess(this)">
+      <div class="ps-icon">👄</div>
+      <div class="ps-num">Step 01</div>
+      <div class="ps-title">Ingestion</div>
+      <div class="ps-detail">Taking food into the body through the mouth. In humans, this involves biting, chewing, and swallowing. The tongue, lips, cheeks, and saliva all cooperate to form a bolus (ball of food) ready for swallowing.</div>
+    </div>
+    <div class="process-step" onclick="toggleProcess(this)">
+      <div class="ps-icon">⚙️</div>
+      <div class="ps-num">Step 02</div>
+      <div class="ps-title">Digestion</div>
+      <div class="ps-detail"><strong>Mechanical:</strong> Physical breakdown — chewing (mastication), churning in the stomach, segmentation in the intestine. Increases surface area for enzymes.<br><br><strong>Chemical:</strong> Enzymes hydrolyse macromolecules. Carbohydrates → monosaccharides. Proteins → amino acids. Lipids → glycerol + fatty acids.</div>
+    </div>
+    <div class="process-step" onclick="toggleProcess(this)">
+      <div class="ps-icon">🔼</div>
+      <div class="ps-num">Step 03</div>
+      <div class="ps-title">Absorption</div>
+      <div class="ps-detail">Digested nutrients pass through the wall of the small intestine into the blood (glucose, amino acids) or lymph (fatty acids, glycerol). Villi and microvilli increase the absorptive surface area to approximately 200 m² — the size of a tennis court.</div>
+    </div>
+    <div class="process-step" onclick="toggleProcess(this)">
+      <div class="ps-icon">🔬</div>
+      <div class="ps-num">Step 04</div>
+      <div class="ps-title">Assimilation</div>
+      <div class="ps-detail">Absorbed nutrients are incorporated into the body's own molecules. Glucose is used in cellular respiration or stored as glycogen/fat. Amino acids build proteins. Fatty acids form cell membranes. This is truly "you are what you eat."</div>
+    </div>
+    <div class="process-step" onclick="toggleProcess(this)">
+      <div class="ps-icon">🚽</div>
+      <div class="ps-num">Step 05</div>
+      <div class="ps-title">Egestion</div>
+      <div class="ps-detail">Undigested material (mostly fibre, dead cells, bacteria) is compacted in the large intestine, water is reabsorbed, and the remaining faeces are expelled via the rectum and anus. This is NOT excretion — faeces were never absorbed into the body.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ 3. ORGANS ════════════════════════════════════════════ -->
+<div id="section-organs">
+<div class="section-wrap">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <div>
+      <h2 class="section-title">Organs of the <em>Digestive System</em></h2>
+      <p class="section-sub">Click an organ to explore its structure, secretions, and role in digestion.</p>
+    </div>
+  </div>
+  <div class="organ-layout">
+    <div class="organ-list" id="organList">
+      <!-- Populated by JS -->
+    </div>
+    <div class="organ-detail-panel" id="organPanel">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ 4. ENZYMES ═══════════════════════════════════════════ -->
+<div id="section-enzymes">
+<div class="section-wrap" style="background:var(--cream);">
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <div>
+      <h2 class="section-title">Digestive <em>Enzymes</em></h2>
+      <p class="section-sub">Enzymes are biological catalysts that hydrolyse (break by adding water) large molecules into absorbable monomers. Each enzyme is substrate-specific.</p>
+    </div>
+  </div>
+  <table class="enzyme-table">
+    <thead>
+      <tr>
+        <th>Enzyme</th>
+        <th>Source</th>
+        <th>Site of Action</th>
+        <th>pH Optimum</th>
+        <th>Substrate → Product</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="enzyme-name">Salivary Amylase</span></td>
+        <td>Salivary glands</td>
+        <td>Mouth</td>
+        <td>~7 (neutral)</td>
+        <td><span class="substrate-pill">Starch</span>→<span class="product-pill">Maltose</span></td>
+      </tr>
+      <tr>
+        <td><span class="enzyme-name">Pepsin</span></td>
+        <td>Gastric glands (chief cells)</td>
+        <td>Stomach</td>
+        <td>~2 (very acidic)</td>
+        <td><span class="substrate-pill">Proteins</span>→<span class="product-pill">Peptides</span></td>
+      </tr>
+      <tr>
+        <td><span class="enzyme-name">Gastric Lipase</span></td>
+        <td>Gastric chief cells</td>
+        <td>Stomach</td>
+        <td>~4–5</td>
+        <td><span class="substrate-pill">Triglycerides</span>→<span class="product-pill">Fatty acids + glycerol</span></td>
+      </tr>
+      <tr>
+        <td><span class="enzyme-name">Pancreatic Amylase</span></td>
+        <td>Pancreas</td>
+        <td>Small intestine</td>
+        <td>~7.5</td>
+        <td><span class="substrate-pill">Starch</span>→<span class="product-pill">Maltose</span></td>
+      </tr>
+      <tr>
+        <td><span class="enzyme-name">Trypsin</span></td>
+        <td>Pancreas (as trypsinogen)</td>
+        <td>Small intestine</td>
+        <td>~8 (alkaline)</td>
+        <td><span class="substrate-pill">Proteins</span>→<span class="product-pill">Peptides</span></td>
+      </tr>
+      <tr>
+        <td><span class="enzyme-name">Pancreatic Lipase</span></td>
+        <td>Pancreas</td>
+        <td>Small intestine</td>
+        <td>~8</td>
+        <td><span class="substrate-pill">Fats (emulsified)</span>→<span class="product-pill">Fatty acids + glycerol</span></td>
+      </tr>
+      <tr>
+        <td><span class="enzyme-name">Maltase</span></td>
+        <td>Intestinal epithelium</td>
+        <td>Small intestine (brush border)</td>
+        <td>~6–7</td>
+        <td><span class="substrate-pill">Maltose</span>→<span class="product-pill">Glucose + Glucose</span></td>
+      </tr>
+      <tr>
+        <td><span class="enzyme-name">Sucrase</span></td>
+        <td>Intestinal epithelium</td>
+        <td>Small intestine (brush border)</td>
+        <td>~6</td>
+        <td><span class="substrate-pill">Sucrose</span>→<span class="product-pill">Glucose + Fructose</span></td>
+      </tr>
+      <tr>
+        <td><span class="enzyme-name">Lactase</span></td>
+        <td>Intestinal epithelium</td>
+        <td>Small intestine (brush border)</td>
+        <td>~6</td>
+        <td><span class="substrate-pill">Lactose</span>→<span class="product-pill">Glucose + Galactose</span></td>
+      </tr>
+      <tr>
+        <td><span class="enzyme-name">Peptidases</span></td>
+        <td>Intestinal epithelium</td>
+        <td>Small intestine (brush border)</td>
+        <td>~7–8</td>
+        <td><span class="substrate-pill">Peptides</span>→<span class="product-pill">Amino acids</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<!-- ══ 5. SIMULATOR ═════════════════════════════════════════ -->
+<div id="section-sim">
+<div class="section-wrap">
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <div>
+      <h2 class="section-title">Food Journey <em>Simulator</em></h2>
+      <p class="section-sub">Follow a meal through the entire digestive system. Click a stage or use the controls to navigate.</p>
+    </div>
+  </div>
+  <div class="simulator-wrap">
+    <div class="sim-header">
+      <div class="sim-title">Tracing a Meal — Mouth to Egestion</div>
+      <div class="sim-controls">
+        <button class="sim-btn" onclick="simPrev()">← Back</button>
+        <button class="sim-btn primary" onclick="simNext()">Next Stage →</button>
+        <button class="sim-btn" onclick="simReset()">↺ Reset</button>
+      </div>
+    </div>
+    <div class="sim-body">
+      <div class="sim-track" id="simTrack"></div>
+      <div class="sim-display" id="simDisplay"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ 6. ABSORPTION ════════════════════════════════════════ -->
+<div id="section-absorption">
+<div class="section-wrap" style="background:var(--cream);">
+  <div class="section-header">
+    <div class="section-num">06</div>
+    <div>
+      <h2 class="section-title">Absorption in the<br><em>Small Intestine</em></h2>
+      <p class="section-sub">The ileum is adapted for maximum absorption: villi, microvilli (brush border), good blood supply, thin walls, and a very long length.</p>
+    </div>
+  </div>
+  <div class="absorption-grid">
+    <div class="villus-container">
+      <!-- Animated villus SVG -->
+      <svg viewBox="0 0 220 360" width="230" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="villusGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fde8d0"/>
+            <stop offset="100%" stop-color="#f0c4a0"/>
+          </linearGradient>
+          <linearGradient id="bloodGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#c62828"/>
+            <stop offset="100%" stop-color="#e53935"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Title -->
+        <text x="110" y="18" text-anchor="middle" font-family="Playfair Display,serif" font-size="13" fill="var(--ink)" font-style="italic">Cross-section of a Villus</text>
+
+        <!-- Villus outline -->
+        <path d="M60,40 Q40,80 45,200 L45,310 L175,310 L175,200 Q180,80 160,40 Q130,20 110,25 Q90,20 60,40 Z" fill="url(#villusGrad)" stroke="#d4a070" stroke-width="1.5"/>
+
+        <!-- Microvilli (brush border) top -->
+        <g stroke="#c4501a" stroke-width="1.5">
+          <line x1="75" y1="40" x2="75" y2="24"/><line x1="82" y1="36" x2="82" y2="20"/>
+          <line x1="89" y1="33" x2="89" y2="17"/><line x1="96" y1="30" x2="96" y2="14"/>
+          <line x1="103" y1="28" x2="103" y2="12"/><line x1="110" y1="27" x2="110" y2="11"/>
+          <line x1="117" y1="28" x2="117" y2="12"/><line x1="124" y1="30" x2="124" y2="14"/>
+          <line x1="131" y1="33" x2="131" y2="17"/><line x1="138" y1="36" x2="138" y2="20"/>
+          <line x1="145" y1="40" x2="145" y2="24"/>
+        </g>
+        <!-- Microvilli caps -->
+        <g fill="#c4501a" opacity="0.8">
+          <circle cx="75" cy="23" r="2.5"/><circle cx="82" cy="19" r="2.5"/>
+          <circle cx="89" cy="16" r="2.5"/><circle cx="96" cy="13" r="2.5"/>
+          <circle cx="103" cy="11" r="2.5"/><circle cx="110" cy="10" r="2.5"/>
+          <circle cx="117" cy="11" r="2.5"/><circle cx="124" cy="13" r="2.5"/>
+          <circle cx="131" cy="16" r="2.5"/><circle cx="138" cy="19" r="2.5"/>
+          <circle cx="145" cy="23" r="2.5"/>
+        </g>
+        <text x="110" y="7" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="var(--rust)" letter-spacing="0.5">microvilli</text>
+
+        <!-- Central lacteal (lymph) -->
+        <path d="M100,55 L100,295 Q100,305 110,308 Q120,305 120,295 L120,55 Z" fill="#c8e6f8" stroke="#5090c0" stroke-width="1" opacity="0.85"/>
+        <text x="110" y="185" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#3a6a90" letter-spacing="0.5" writing-mode="tb" transform="rotate(-90,110,185)">lacteal (lymph)</text>
+
+        <!-- Blood capillaries -->
+        <path d="M60,80 Q80,85 98,80" stroke="#e53935" stroke-width="2.5" fill="none"/>
+        <path d="M60,120 Q80,125 98,120" stroke="#e53935" stroke-width="2.5" fill="none"/>
+        <path d="M122,80 Q140,85 160,80" stroke="#e53935" stroke-width="2.5" fill="none"/>
+        <path d="M122,120 Q140,125 160,120" stroke="#e53935" stroke-width="2.5" fill="none"/>
+        <path d="M60,160 Q80,165 98,160" stroke="#1565c0" stroke-width="2.5" fill="none"/>
+        <path d="M122,160 Q140,165 160,160" stroke="#1565c0" stroke-width="2.5" fill="none"/>
+
+        <!-- Glucose & AA particles (absorbed) -->
+        <circle cx="75" cy="95" r="5" fill="var(--amber)" opacity="0.9">
+          <animate attributeName="cx" values="75;98" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.9;0.2;0.9" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="145" cy="140" r="4" fill="var(--rust)" opacity="0.9">
+          <animate attributeName="cx" values="145;122" dur="1.8s" begin="0.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.9;0.2;0.9" dur="1.8s" begin="0.5s" repeatCount="indefinite"/>
+        </circle>
+        <!-- Fatty acid into lacteal -->
+        <circle cx="72" cy="170" r="4" fill="#5090c0" opacity="0.9">
+          <animate attributeName="cx" values="72;100" dur="2.5s" begin="0.3s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="170;185" dur="2.5s" begin="0.3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.9;0.1;0.9" dur="2.5s" begin="0.3s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Labels -->
+        <text x="38" y="84" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="7" fill="#e53935">blood</text>
+        <text x="38" y="93" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="7" fill="#e53935">capillary</text>
+        <text x="183" y="164" font-family="JetBrains Mono,monospace" font-size="7" fill="#1565c0">venule</text>
+
+        <!-- Base / blood vessels -->
+        <rect x="45" y="308" width="130" height="30" rx="3" fill="url(#bloodGrad)" opacity="0.7"/>
+        <text x="110" y="328" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="white" letter-spacing="1">BLOOD VESSEL (PORTAL VEIN)</text>
+
+        <!-- Epithelial cell indicator -->
+        <path d="M44,43 Q44,80 45,200" stroke="#d4a070" stroke-width="4" opacity="0.5"/>
+        <text x="22" y="120" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="var(--muted)" writing-mode="tb" transform="rotate(-90,22,120)">epithelial cells</text>
+      </svg>
+    </div>
+    <div class="nutrient-cards">
+      <div style="font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; margin-bottom:0.5rem;">What gets absorbed, and how?</div>
+      <div style="font-size:0.9rem; color:var(--muted); margin-bottom:1.5rem; line-height:1.6;">Different nutrients use different transport mechanisms across the intestinal epithelium and into the circulation.</div>
+      <div class="nutrient-card">
+        <div class="nc-color" style="background:var(--amber)"></div>
+        <div class="nc-info">
+          <div class="nc-nutrient-name">Glucose & Fructose</div>
+          <div class="nc-where">→ Blood capillaries → Hepatic portal vein → Liver</div>
+          <div class="nc-how">Active transport (co-transported with Na⁺) and facilitated diffusion via GLUT transporters.</div>
+        </div>
+      </div>
+      <div class="nutrient-card">
+        <div class="nc-color" style="background:var(--rust)"></div>
+        <div class="nc-info">
+          <div class="nc-nutrient-name">Amino Acids</div>
+          <div class="nc-where">→ Blood capillaries → Hepatic portal vein → Liver</div>
+          <div class="nc-how">Active transport via specific amino acid carrier proteins in the brush border membrane.</div>
+        </div>
+      </div>
+      <div class="nutrient-card">
+        <div class="nc-color" style="background:#5090c0"></div>
+        <div class="nc-info">
+          <div class="nc-nutrient-name">Fatty Acids & Glycerol</div>
+          <div class="nc-where">→ Reassembled into chylomicrons → Lacteal → Lymphatic system → Blood</div>
+          <div class="nc-how">Simple diffusion across membrane; re-synthesised into triglycerides inside epithelial cells, packaged as chylomicrons, secreted into lacteals.</div>
+        </div>
+      </div>
+      <div class="nutrient-card">
+        <div class="nc-color" style="background:var(--water)"></div>
+        <div class="nc-info">
+          <div class="nc-nutrient-name">Water & Minerals</div>
+          <div class="nc-where">Small intestine (90%) + Large intestine (remainder)</div>
+          <div class="nc-how">Osmosis (water follows solute gradients). Minerals (Na⁺, Ca²⁺, Fe²⁺) via specific channels and active transport.</div>
+        </div>
+      </div>
+      <div class="nutrient-card">
+        <div class="nc-color" style="background:var(--sage)"></div>
+        <div class="nc-info">
+          <div class="nc-nutrient-name">Vitamins</div>
+          <div class="nc-where">Fat-soluble (A,D,E,K) → lacteal; Water-soluble (B,C) → blood</div>
+          <div class="nc-how">Fat-soluble vitamins dissolve in micelles and enter with fats. Water-soluble vitamins diffuse directly into blood capillaries.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ 7. QUIZ ══════════════════════════════════════════════ -->
+<div id="section-quiz">
+<div class="section-wrap">
+  <div class="section-header">
+    <div class="section-num">07</div>
+    <div>
+      <h2 class="section-title">Test Your <em>Knowledge</em></h2>
+      <p class="section-sub">Ten questions covering heterotrophic nutrition and digestion in man.</p>
+    </div>
+  </div>
+  <div style="display:grid; grid-template-columns:2fr 1fr; gap:3rem; align-items:start;">
+    <div class="quiz-wrap" id="quizWrap"></div>
+    <div style="background:var(--cream); border:1px solid var(--border); border-radius:4px; padding:2rem;">
+      <div style="font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; margin-bottom:1rem;">Your Score</div>
+      <div id="scoreDisplay" style="font-family:'Playfair Display',serif; font-size:3rem; font-weight:700; color:var(--rust); line-height:1;">0 / 10</div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin-top:0.3rem;">Questions answered: <span id="answeredCount">0</span></div>
+      <div style="margin-top:1.5rem; height:6px; background:var(--border); border-radius:3px; overflow:hidden;">
+        <div id="scoreBar" style="height:100%; background:var(--rust); width:0%; transition:width 0.5s; border-radius:3px;"></div>
+      </div>
+      <div style="font-size:0.85rem; color:var(--muted); margin-top:1.5rem; line-height:1.6; font-style:italic;" id="scoreMsg">Answer questions to build your score.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<footer>
+  <p>Heterotrophic Nutrition & Digestion in Man · Interactive Biology Resource</p>
+  <p style="margin-top:0.5rem; opacity:0.6;">Click · Explore · Learn</p>
+</footer>
+
+<script>
+// ── PROGRESS BAR ──────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+});
+
+// ── SCROLL TO ─────────────────────────────────────────────
+function scrollTo(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+// ── PROCESS TOGGLE ────────────────────────────────────────
+function toggleProcess(el) {
+  el.classList.toggle('active');
+}
+
+// ── ORGAN DATA ────────────────────────────────────────────
+const organs = [
+  {
+    name: 'Mouth (Buccal Cavity)', color: '#c4501a', role: 'Ingestion',
+    badge: 'Mechanical + Chemical',
+    desc: 'The mouth is where digestion begins. Teeth mechanically break food into smaller pieces (mastication), vastly increasing surface area. The tongue mixes food with saliva and shapes it into a bolus for swallowing.',
+    facts: [
+      { k: 'Secretion', v: 'Saliva (1–1.5 L/day) containing salivary amylase, mucin, lysozyme' },
+      { k: 'Enzyme', v: 'Salivary amylase begins starch → maltose hydrolysis' },
+      { k: 'pH', v: '6.5–7.5 (slightly acidic to neutral)' },
+      { k: 'Key feature', v: '32 adult teeth: incisors, canines, premolars, molars' },
+    ],
+    svgContent: `<rect width="240" height="100" rx="6" fill="#fde8d0"/>
+      <ellipse cx="120" cy="50" rx="90" ry="40" fill="#f5c0a0" stroke="#c4501a" stroke-width="1.5"/>
+      <rect x="50" y="25" width="16" height="20" rx="3" fill="white" stroke="#d4a070" stroke-width="1"/>
+      <rect x="72" y="22" width="16" height="22" rx="3" fill="white" stroke="#d4a070" stroke-width="1"/>
+      <rect x="92" y="20" width="14" height="24" rx="3" fill="white" stroke="#d4a070" stroke-width="1"/>
+      <rect x="112" y="20" width="14" height="24" rx="3" fill="white" stroke="#d4a070" stroke-width="1"/>
+      <rect x="132" y="20" width="14" height="24" rx="3" fill="white" stroke="#d4a070" stroke-width="1"/>
+      <rect x="152" y="22" width="16" height="22" rx="3" fill="white" stroke="#d4a070" stroke-width="1"/>
+      <rect x="172" y="25" width="16" height="20" rx="3" fill="white" stroke="#d4a070" stroke-width="1"/>
+      <ellipse cx="120" cy="65" rx="60" ry="22" fill="#e87080" opacity="0.7"/>
+      <text x="120" y="69" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="white" letter-spacing="1">tongue</text>`
+  },
+  {
+    name: 'Oesophagus', color: '#8b5c2a', role: 'Transport',
+    badge: 'Mechanical — Peristalsis',
+    desc: 'The oesophagus is a muscular tube ~25 cm long connecting the mouth to the stomach. It performs no chemical digestion. Peristalsis — coordinated waves of circular and longitudinal muscle contraction — propels the bolus downward. The cardiac sphincter at the bottom prevents reflux.',
+    facts: [
+      { k: 'Length', v: '~25 cm' },
+      { k: 'Movement', v: 'Peristalsis (involuntary muscle waves)' },
+      { k: 'Secretion', v: 'Mucus only (for lubrication)' },
+      { k: 'Sphincters', v: 'Upper oesophageal + Lower (cardiac) sphincter' },
+    ],
+    svgContent: `<rect width="240" height="100" rx="6" fill="#f5ede0"/>
+      <path d="M100,10 L100,90" stroke="#8b5c2a" stroke-width="18" stroke-linecap="round" opacity="0.3"/>
+      <path d="M100,10 L100,90" stroke="#c8956a" stroke-width="12" stroke-linecap="round"/>
+      <path d="M140,10 L140,90" stroke="#8b5c2a" stroke-width="18" stroke-linecap="round" opacity="0.3"/>
+      <path d="M140,10 L140,90" stroke="#c8956a" stroke-width="12" stroke-linecap="round"/>
+      <ellipse cx="120" cy="30" rx="16" ry="8" fill="var(--amber)" opacity="0.8"><animate attributeName="cy" values="20;80;20" dur="2.5s" repeatCount="indefinite"/><animate attributeName="rx" values="16;10;16" dur="2.5s" repeatCount="indefinite"/></ellipse>
+      <text x="175" y="50" font-family="JetBrains Mono,monospace" font-size="8" fill="var(--muted)">peristalsis</text>
+      <text x="175" y="62" font-family="JetBrains Mono,monospace" font-size="8" fill="var(--muted)">→ bolus moves</text>`
+  },
+  {
+    name: 'Stomach', color: '#e8922a', role: 'Digestion',
+    badge: 'Mechanical + Chemical',
+    desc: 'A J-shaped muscular bag that stores, churns, and begins protein digestion. The three muscle layers (longitudinal, circular, oblique) create powerful churning movements, turning the bolus into a semi-liquid called chyme. Gastric glands secrete hydrochloric acid and enzymes.',
+    facts: [
+      { k: 'Capacity', v: '~1 litre (expandable to 4 L)' },
+      { k: 'Secretions', v: 'HCl (pH 2), pepsinogen, gastric lipase, intrinsic factor, mucus' },
+      { k: 'Key enzyme', v: 'Pepsin (activated from pepsinogen by HCl) digests proteins' },
+      { k: 'Output', v: 'Chyme (acidic, semi-liquid) released via pyloric sphincter' },
+      { k: 'pH', v: '1.5–3.5 (very acidic — kills bacteria, denatures proteins)' },
+    ],
+    svgContent: `<rect width="240" height="100" rx="6" fill="#fff8f0"/>
+      <path d="M60,15 Q40,20 38,50 Q36,80 70,88 Q120,95 160,88 Q195,80 198,55 Q200,25 175,18 Q140,10 100,12 Q78,13 60,15 Z" fill="#fcd8a0" stroke="#e8922a" stroke-width="2">
+        <animateTransform attributeName="transform" type="skewX" values="0;2;0;-2;0" dur="2s" repeatCount="indefinite"/>
+      </path>
+      <text x="120" y="55" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#8b5c2a" letter-spacing="0.5">churning + HCl</text>
+      <text x="120" y="67" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="var(--rust)" letter-spacing="0.5">pH 2 — Pepsin active</text>`
+  },
+  {
+    name: 'Small Intestine', color: '#d4a843', role: 'Main Digestion & Absorption',
+    badge: 'Chemical + Absorption',
+    desc: 'At 6–7 m long, the small intestine is where the bulk of chemical digestion and virtually all nutrient absorption occurs. It has three regions: duodenum (receives bile and pancreatic juice), jejunum (main absorption zone), and ileum (absorbs B12, bile salts, remaining nutrients).',
+    facts: [
+      { k: 'Length', v: '6–7 m (duodenum 25 cm + jejunum 2.5 m + ileum 3.5 m)' },
+      { k: 'Surface area', v: '~200 m² (via folds, villi, microvilli)' },
+      { k: 'Key secretions', v: 'Intestinal juice (succus entericus), brush-border enzymes' },
+      { k: 'Receives', v: 'Bile (from liver/gallbladder) + pancreatic juice (from pancreas)' },
+      { k: 'pH', v: '7–8 (alkaline — neutralises chyme from stomach)' },
+    ],
+    svgContent: `<rect width="240" height="100" rx="6" fill="#fffbf0"/>
+      <path d="M20,20 Q60,10 100,30 Q140,50 180,20 Q210,5 225,30 Q235,55 210,70 Q170,85 130,65 Q90,45 50,70 Q20,85 15,65 Q8,45 20,20Z" fill="none" stroke="#d4a843" stroke-width="3" fill="#fef0c0" fill-opacity="0.5"/>
+      <circle cx="70" cy="45" r="4" fill="var(--rust)" opacity="0.8"><animate attributeName="cx" values="70;150" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.8;0.1" dur="3s" repeatCount="indefinite"/></circle>
+      <text x="120" y="95" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="var(--muted)">jejunum — main absorption zone</text>`
+  },
+  {
+    name: 'Liver', color: '#6b8f71', role: 'Bile Production',
+    badge: 'Accessory Organ',
+    desc: 'The largest internal organ (~1.5 kg). Its digestive role is producing bile — a green-yellow fluid containing bile salts and pigments. Bile emulsifies fats (breaks large fat globules into tiny droplets), dramatically increasing surface area for pancreatic lipase. The liver also processes all absorbed nutrients arriving from the gut via the hepatic portal vein.',
+    facts: [
+      { k: 'Bile production', v: '~500–1000 mL/day' },
+      { k: 'Bile stored in', v: 'Gallbladder (released into duodenum when food arrives)' },
+      { k: 'Bile function', v: 'Emulsification of fats; neutralises stomach acid' },
+      { k: 'Also processes', v: 'Glucose (→glycogen), amino acids (deamination), toxins, alcohol' },
+      { k: 'Weight', v: '~1.4–1.6 kg — largest gland in the body' },
+    ],
+    svgContent: `<rect width="240" height="100" rx="6" fill="#f0f5f0"/>
+      <path d="M30,20 Q20,30 22,55 Q24,80 70,85 Q120,90 160,80 Q200,70 210,50 Q215,30 200,22 Q170,10 120,12 Q70,14 30,20 Z" fill="#8abf91" stroke="#4a7c59" stroke-width="1.5" opacity="0.85"/>
+      <text x="110" y="52" text-anchor="middle" font-family="Playfair Display,serif" font-size="13" font-style="italic" fill="white">Liver</text>
+      <path d="M140,75 Q160,80 170,90" stroke="#4a7c59" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <ellipse cx="178" cy="93" rx="15" ry="8" fill="#5aaf6a" opacity="0.8"/>
+      <text x="178" y="97" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6" fill="white">gallbladder</text>`
+  },
+  {
+    name: 'Pancreas', color: '#7b4fa0', role: 'Enzyme Factory',
+    badge: 'Accessory Organ',
+    desc: 'A dual-function gland. Its exocrine cells produce pancreatic juice — a cocktail of powerful enzymes and sodium bicarbonate — secreted into the duodenum via the pancreatic duct. The alkaline bicarbonate neutralises the acidic chyme arriving from the stomach, creating the correct pH for intestinal enzymes.',
+    facts: [
+      { k: 'Pancreatic juice pH', v: '~8 (alkaline)' },
+      { k: 'Enzymes produced', v: 'Pancreatic amylase, trypsin, chymotrypsin, pancreatic lipase, nucleases' },
+      { k: 'Key role', v: 'Neutralises stomach acid in duodenum; complete protein/fat/starch digestion' },
+      { k: 'Endocrine role', v: 'Islets of Langerhans secrete insulin and glucagon (blood sugar regulation)' },
+    ],
+    svgContent: `<rect width="240" height="100" rx="6" fill="#f8f0ff"/>
+      <path d="M20,45 Q30,30 80,35 Q140,40 190,30 Q220,25 228,45 Q225,65 190,70 Q140,75 80,70 Q30,65 20,55 Z" fill="#c8a0e0" stroke="#7b4fa0" stroke-width="1.5" opacity="0.8"/>
+      <text x="120" y="55" text-anchor="middle" font-family="Playfair Display,serif" font-size="13" font-style="italic" fill="white">Pancreas</text>
+      <text x="120" y="90" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="var(--enzyme)" letter-spacing="0.5">amylase · trypsin · lipase</text>`
+  },
+  {
+    name: 'Large Intestine', color: '#3a7bbf', role: 'Water Reabsorption',
+    badge: 'Reabsorption + Egestion',
+    desc: 'About 1.5 m long but wider than the small intestine. No chemical digestion occurs here. Its main roles are reabsorbing water and mineral salts from indigestible material, compacting the remains into faeces, and housing billions of symbiotic bacteria (gut microbiome) that ferment fibre and produce vitamins K and B12.',
+    facts: [
+      { k: 'Length', v: '~1.5 m; sections: caecum, colon (ascending/transverse/descending), sigmoid colon, rectum' },
+      { k: 'Main function', v: 'Water reabsorption (~1.5 L water recovered per day)' },
+      { k: 'Microbiome', v: '~100 trillion bacteria; ferment fibre, produce vitamins, support immunity' },
+      { k: 'Output', v: 'Faeces (~150 g/day): 75% water, 25% solids (bacteria, fibre, dead cells)' },
+    ],
+    svgContent: `<rect width="240" height="100" rx="6" fill="#f0f5ff"/>
+      <path d="M20,10 L20,80 Q20,90 30,90 L60,90 Q70,90 70,80 L70,10 Z" fill="#6aa0d0" stroke="#3a7bbf" stroke-width="1.5" opacity="0.8"/>
+      <path d="M70,10 L180,10 Q190,10 190,20 L190,30 Q190,40 180,40 L70,40" fill="none" stroke="#3a7bbf" stroke-width="5" stroke-linecap="round"/>
+      <path d="M70,40 L70,80 Q70,90 80,90 L180,90 Q190,90 190,80 L190,50 Q190,40 180,40 L70,40" fill="#6aa0d0" stroke="#3a7bbf" stroke-width="1.5" opacity="0.6"/>
+      <text x="195" y="55" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#3a7bbf">water</text>
+      <text x="195" y="66" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#3a7bbf">reabsorbed</text>`
+  },
+];
+
+function buildOrganList() {
+  const list = document.getElementById('organList');
+  organs.forEach((o, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'organ-btn' + (i === 0 ? ' active' : '');
+    btn.innerHTML = `<div class="ob-dot" style="background:${o.color}"></div><span class="ob-name">${o.name}</span><span class="ob-role">${o.role}</span>`;
+    btn.onclick = () => { selectOrgan(i); };
+    list.appendChild(btn);
+  });
+}
+
+function selectOrgan(idx) {
+  document.querySelectorAll('.organ-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
+  const o = organs[idx];
+  document.getElementById('organPanel').innerHTML = `
+    <div class="odp-header">
+      <div class="odp-organ-name" style="color:${o.color}">${o.name}</div>
+      <span class="odp-badge" style="background:${o.color}">${o.badge}</span>
+    </div>
+    <div class="odp-body">
+      <svg class="odp-svg" viewBox="0 0 240 100" xmlns="http://www.w3.org/2000/svg">${o.svgContent}</svg>
+      <p class="odp-desc">${o.desc}</p>
+      <div class="odp-facts">
+        ${o.facts.map(f => `<div class="fact-row"><div class="fact-key">${f.k}</div><div class="fact-val">${f.v}</div></div>`).join('')}
+      </div>
+    </div>`;
+}
+
+buildOrganList();
+selectOrgan(0);
+
+// ── SIMULATOR DATA ────────────────────────────────────────
+const simStages = [
+  {
+    label: 'Ingestion', organ: 'Mouth', time: '0 min',
+    title: 'The Meal Begins', icon: '👄',
+    desc: 'You take a bite. Incisors cut, molars grind — mechanical digestion increases surface area 10-fold. Saliva floods in (0.5–1 mL/min), moistening the food and delivering salivary amylase. The tongue shapes the mass into a bolus, which is pushed to the back of the throat and swallowed.',
+    enzymes: ['Salivary Amylase'],
+    phLabel: 'pH 6.5–7.5', phColor: '#6ba868',
+    svgAnim: (c) => { c.innerHTML = `<rect width="100%" height="100%" fill="#fde8d0" rx="6"/>
+      <text x="50%" y="45%" text-anchor="middle" font-size="48" dominant-baseline="middle">🦷</text>
+      <text x="50%" y="75%" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="var(--rust)">Teeth grinding food → ↑ surface area</text>`; }
+  },
+  {
+    label: 'Oesophagus', organ: 'Oesophagus', time: '1–10 sec',
+    title: 'Peristalsis', icon: '🌊',
+    desc: 'The bolus enters the oesophagus. Waves of muscle contraction (peristalsis) push it toward the stomach at ~4 cm/s. The lower oesophageal sphincter relaxes to let it through. No digestion occurs here — it\'s purely a transit tube.',
+    enzymes: [],
+    phLabel: 'pH ~7', phColor: '#6ba868',
+    svgAnim: (c) => { c.innerHTML = `<rect width="100%" height="100%" fill="#f5ede0" rx="6"/>
+      <text x="50%" y="45%" text-anchor="middle" font-size="42" dominant-baseline="middle">🌊</text>
+      <text x="50%" y="75%" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="var(--muted)">Peristaltic wave propels bolus</text>`; }
+  },
+  {
+    label: 'Stomach', organ: 'Stomach', time: '10 min – 4 hrs',
+    title: 'Acid & Churning', icon: '🔥',
+    desc: 'The stomach is a violent environment. Parietal cells pump out HCl (pH 2), denaturing proteins and killing bacteria. Chief cells secrete pepsinogen, which HCl activates into pepsin — a protease that cleaves proteins into peptide fragments. Three muscle layers churn the food into chyme.',
+    enzymes: ['Pepsin', 'Gastric Lipase'],
+    phLabel: 'pH 1.5–3.5', phColor: '#e53935',
+    svgAnim: (c) => { c.innerHTML = `<rect width="100%" height="100%" fill="#fff0e0" rx="6"/>
+      <text x="50%" y="45%" text-anchor="middle" font-size="42" dominant-baseline="middle">🔥</text>
+      <text x="50%" y="75%" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="var(--rust)">HCl pH 2 — Pepsin digests proteins</text>`; }
+  },
+  {
+    label: 'Duodenum', organ: 'Small Intestine', time: '4–6 hrs',
+    title: 'Bile & Pancreatic Enzymes', icon: '⚗️',
+    desc: 'Chyme squirts through the pyloric sphincter into the duodenum. Bile (from the liver/gallbladder) emulsifies fats — breaking oil globules into tiny droplets, hugely increasing surface area for lipase. Pancreatic juice (pH 8) neutralises the acid and delivers amylase, trypsin, and lipase for full digestion.',
+    enzymes: ['Pancreatic Amylase', 'Trypsin', 'Pancreatic Lipase', 'Bile (emulsifies)'],
+    phLabel: 'pH 7–8', phColor: '#1565c0',
+    svgAnim: (c) => { c.innerHTML = `<rect width="100%" height="100%" fill="#f0f5ff" rx="6"/>
+      <text x="50%" y="45%" text-anchor="middle" font-size="42" dominant-baseline="middle">⚗️</text>
+      <text x="50%" y="75%" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#1565c0">Bile emulsifies fats · Pancreatic enzymes</text>`; }
+  },
+  {
+    label: 'Jejunum & Ileum', organ: 'Small Intestine', time: '1–4 hrs',
+    title: 'Absorption', icon: '🔼',
+    desc: 'Brush-border enzymes (maltase, sucrase, lactase, peptidases) complete final digestion. The resulting monosaccharides, amino acids, fatty acids, and glycerol are absorbed across the microvilli. Glucose and amino acids enter blood capillaries; fats enter lacteals. 90% of all nutrient absorption happens here.',
+    enzymes: ['Maltase', 'Sucrase', 'Lactase', 'Peptidases'],
+    phLabel: 'pH 7–8', phColor: '#1565c0',
+    svgAnim: (c) => { c.innerHTML = `<rect width="100%" height="100%" fill="#fffbf0" rx="6"/>
+      <text x="50%" y="45%" text-anchor="middle" font-size="42" dominant-baseline="middle">🔼</text>
+      <text x="50%" y="75%" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="var(--amber)">Nutrients absorbed through villi</text>`; }
+  },
+  {
+    label: 'Large Intestine', organ: 'Colon', time: '10–30 hrs',
+    title: 'Water Recovery', icon: '💧',
+    desc: 'What remains — mostly indigestible fibre, water, dead cells, bacteria — enters the colon. About 1.5 L of water is reabsorbed daily. Symbiotic bacteria ferment fibre, producing short-chain fatty acids, vitamins K and B12. The material compacts into faeces over many hours.',
+    enzymes: ['Bacterial fermentation (not enzymes per se)'],
+    phLabel: 'pH 5.5–7', phColor: '#6ba868',
+    svgAnim: (c) => { c.innerHTML = `<rect width="100%" height="100%" fill="#f0f5ff" rx="6"/>
+      <text x="50%" y="45%" text-anchor="middle" font-size="42" dominant-baseline="middle">💧</text>
+      <text x="50%" y="75%" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#3a7bbf">Water reabsorbed → faeces formed</text>`; }
+  },
+  {
+    label: 'Egestion', organ: 'Rectum & Anus', time: '20–40 hrs total',
+    title: 'Defaecation', icon: '🚽',
+    desc: 'Faeces stored in the rectum trigger the defaecation reflex when sufficient pressure builds. The internal sphincter (involuntary) relaxes; voluntary control of the external sphincter completes the process. Faeces are ~75% water and 25% solids — bacteria, fibre, sloughed cells, bile pigments.',
+    enzymes: [],
+    phLabel: 'pH 6.5–7', phColor: '#6ba868',
+    svgAnim: (c) => { c.innerHTML = `<rect width="100%" height="100%" fill="#f5f5f0" rx="6"/>
+      <text x="50%" y="45%" text-anchor="middle" font-size="42" dominant-baseline="middle">✅</text>
+      <text x="50%" y="75%" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="var(--muted)">Indigestible waste egested</text>`; }
+  },
+];
+
+let simIdx = 0;
+
+function buildSim() {
+  const track = document.getElementById('simTrack');
+  track.innerHTML = simStages.map((s, i) => `
+    <div class="track-stage ${i === 0 ? 'active passed' : ''}" id="ts${i}" onclick="goSim(${i})">
+      <div class="ts-dot"></div>
+      <div>
+        <div class="ts-label">${s.icon} ${s.label}</div>
+        <div class="ts-organ">${s.organ}</div>
+      </div>
+      <div class="ts-time">${s.time}</div>
+    </div>`).join('');
+  renderSim();
+}
+
+function renderSim() {
+  const s = simStages[simIdx];
+  const disp = document.getElementById('simDisplay');
+  disp.innerHTML = `
+    <div class="sim-stage-title fade-in">${s.title}</div>
+    <div class="sim-stage-organ">${s.organ} · ${s.time}</div>
+    <div class="sim-animation" id="simCanvas"></div>
+    <div class="sim-desc fade-in">${s.desc}</div>
+    <div class="sim-enzymes">
+      ${s.enzymes.map(e => `<span class="enzyme-tag">${e}</span>`).join('')}
+      <span class="ph-tag" style="background:#e8f0ff;color:#1565c0;border:1px solid #b0c4e8">${s.phLabel}</span>
+    </div>`;
+  s.svgAnim(document.getElementById('simCanvas'));
+  simStages.forEach((_, i) => {
+    const el = document.getElementById('ts'+i);
+    el.classList.toggle('active', i === simIdx);
+    el.classList.toggle('passed', i <= simIdx);
+  });
+}
+
+function goSim(i) { simIdx = i; renderSim(); }
+function simNext() { if(simIdx < simStages.length-1) { simIdx++; renderSim(); } }
+function simPrev() { if(simIdx > 0) { simIdx--; renderSim(); } }
+function simReset() { simIdx = 0; renderSim(); }
+
+buildSim();
+
+// ── QUIZ ─────────────────────────────────────────────────
+const questions = [
+  { q: 'Which type of heterotrophic nutrition do humans practise?', opts: ['Saprophytic','Parasitic','Holozoic','Autotrophic'], ans: 2, exp: 'Humans are holozoic — we ingest whole food, digest it internally, and absorb the products.' },
+  { q: 'What is the correct order of the five processes of holozoic nutrition?', opts: ['Ingestion → Digestion → Absorption → Assimilation → Egestion','Digestion → Ingestion → Absorption → Egestion → Assimilation','Ingestion → Absorption → Digestion → Assimilation → Egestion','Assimilation → Ingestion → Digestion → Absorption → Egestion'], ans: 0, exp: 'IDAAE: Ingestion, Digestion, Absorption, Assimilation, Egestion — in that order.' },
+  { q: 'Which enzyme begins the digestion of starch in the mouth?', opts: ['Pepsin','Maltase','Salivary Amylase','Trypsin'], ans: 2, exp: 'Salivary amylase (ptyalin) is secreted in saliva and begins hydrolyzing starch into maltose.' },
+  { q: 'What is the pH of the stomach, and why?', opts: ['pH 8 — alkaline to activate pepsinogen','pH 2 — HCl kills bacteria and activates pepsinogen','pH 7 — neutral for optimum enzyme activity','pH 5 — weakly acidic for lipase activity'], ans: 1, exp: 'Parietal cells secrete HCl, creating pH 1.5–3.5. This kills bacteria, denatures proteins, and converts pepsinogen to active pepsin.' },
+  { q: 'Bile is produced in the liver but stored where?', opts: ['Pancreas','Duodenum','Gallbladder','Jejunum'], ans: 2, exp: 'Bile is produced in the liver, stored in the gallbladder, and released into the duodenum when fatty food arrives.' },
+  { q: 'What is the role of bile in fat digestion?', opts: ['Enzymatic hydrolysis of triglycerides','Emulsification — breaking fat globules into tiny droplets','Acidification to denature fat','Absorption of fatty acids into lacteals'], ans: 1, exp: 'Bile salts emulsify fats — they break large fat droplets into tiny ones (micelles), vastly increasing surface area for pancreatic lipase.' },
+  { q: 'Where does the majority of nutrient absorption occur?', opts: ['Stomach','Large intestine','Duodenum','Jejunum and ileum'], ans: 3, exp: 'The jejunum and ileum (small intestine) are the primary sites of absorption, with enormous surface area via villi and microvilli (~200 m²).' },
+  { q: 'Fatty acids and glycerol are absorbed into which vessel?', opts: ['Blood capillaries','Hepatic portal vein','Lacteal (lymph)','Renal vein'], ans: 2, exp: 'Fatty acids and glycerol are reformed into triglycerides, packaged as chylomicrons, and absorbed into lacteals (lymphatic capillaries) inside villi.' },
+  { q: 'What is the main function of the large intestine?', opts: ['Chemical digestion of proteins','Absorption of glucose','Reabsorption of water and formation of faeces','Production of bile'], ans: 2, exp: 'The large intestine reabsorbs ~1.5 L of water per day, compacting indigestible material into faeces for egestion.' },
+  { q: 'Egestion and excretion are different because:', opts: ['Egestion produces urine; excretion produces faeces','Faeces were never absorbed into the body; excreted substances were metabolic waste from body cells','Excretion occurs in the liver; egestion in the kidneys','They are actually the same process'], ans: 1, exp: 'Egestion removes unabsorbed material (faeces) that was never part of the body\'s metabolism. Excretion removes metabolic waste products (e.g., urea, CO₂) that WERE absorbed and processed by cells.' },
+];
+
+let quizCurrent = 0, quizScore = 0, answered = 0, quizAnswered = new Array(questions.length).fill(false);
+
+function renderQuiz() {
+  const q = questions[quizCurrent];
+  document.getElementById('quizWrap').innerHTML = `
+    <div style="font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--muted); margin-bottom:1rem;">
+      Question ${quizCurrent + 1} of ${questions.length}
+    </div>
+    <div class="quiz-q">${q.q}</div>
+    <div class="quiz-options">
+      ${q.opts.map((o, i) => `<button class="quiz-opt" onclick="answerQ(${i})">${o}</button>`).join('')}
+    </div>
+    <div class="quiz-feedback" id="qFeedback"></div>
+    <div class="quiz-nav">
+      ${quizCurrent > 0 ? `<button class="qnav-btn" onclick="prevQ()">← Previous</button>` : ''}
+      ${quizCurrent < questions.length - 1 ? `<button class="qnav-btn primary" onclick="nextQ()">Next →</button>` : `<button class="qnav-btn primary" onclick="showFinalScore()">Finish Quiz</button>`}
+    </div>`;
+}
+
+function answerQ(idx) {
+  if (quizAnswered[quizCurrent]) return;
+  quizAnswered[quizCurrent] = true;
+  const q = questions[quizCurrent];
+  const correct = idx === q.ans;
+  if (correct) quizScore++;
+  answered++;
+
+  const opts = document.querySelectorAll('.quiz-opt');
+  opts.forEach((o, i) => {
+    o.disabled = true;
+    if (i === q.ans) o.classList.add('correct');
+    else if (i === idx && !correct) o.classList.add('wrong');
+  });
+
+  const fb = document.getElementById('qFeedback');
+  fb.className = `quiz-feedback show ${correct ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = `<strong>${correct ? '✓ Correct!' : '✗ Not quite.'}</strong> ${q.exp}`;
+
+  document.getElementById('scoreDisplay').textContent = `${quizScore} / ${questions.length}`;
+  document.getElementById('answeredCount').textContent = answered;
+  document.getElementById('scoreBar').style.width = (quizScore / questions.length * 100) + '%';
+  const pct = Math.round(quizScore / answered * 100);
+  document.getElementById('scoreMsg').textContent = pct >= 80 ? '🌟 Excellent work!' : pct >= 60 ? '👍 Good progress.' : '📚 Keep reviewing the material.';
+}
+
+function nextQ() { if(quizCurrent < questions.length-1) { quizCurrent++; renderQuiz(); } }
+function prevQ() { if(quizCurrent > 0) { quizCurrent--; renderQuiz(); } }
+
+function showFinalScore() {
+  const pct = Math.round(quizScore / questions.length * 100);
+  document.getElementById('quizWrap').innerHTML = `
+    <div style="text-align:center; padding:3rem 1rem;">
+      <div style="font-size:4rem; margin-bottom:1rem;">${pct >= 80 ? '🌟' : pct >= 60 ? '👍' : '📚'}</div>
+      <div style="font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; margin-bottom:0.5rem;">Final Score: ${quizScore} / ${questions.length}</div>
+      <div style="font-size:1.1rem; color:var(--muted); font-style:italic; margin-bottom:2rem;">${pct >= 80 ? 'Outstanding! You have mastered heterotrophic nutrition.' : pct >= 60 ? 'Good understanding. Review the topics you missed.' : 'Review the material and try again!'}</div>
+      <button class="qnav-btn primary" onclick="restartQuiz()">Retake Quiz</button>
+    </div>`;
+}
+
+function restartQuiz() {
+  quizCurrent = 0; quizScore = 0; answered = 0;
+  quizAnswered = new Array(questions.length).fill(false);
+  document.getElementById('scoreDisplay').textContent = '0 / 10';
+  document.getElementById('answeredCount').textContent = '0';
+  document.getElementById('scoreBar').style.width = '0%';
+  document.getElementById('scoreMsg').textContent = 'Answer questions to build your score.';
+  renderQuiz();
+}
+
+renderQuiz();
+
+// ── ACTIVE NAV ────────────────────────────────────────────
+const sectionIds = ['section-types','section-processes','section-organs','section-enzymes','section-sim','section-absorption','section-quiz'];
+const navLinks = document.querySelectorAll('.nav-link');
+const sectionObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      const idx = sectionIds.indexOf(e.target.id);
+      navLinks.forEach((l, i) => l.classList.toggle('active', i === idx));
+    }
+  });
+}, { threshold: 0.3 });
+sectionIds.forEach(id => { const el = document.getElementById(id); if(el) sectionObs.observe(el); });
+</script>
+</body>
+</html>
